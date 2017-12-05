@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Orders;
 
-use App\Groups;
-use App\User;
 
-class OrdersController extends Controller
+class NonUserOrders extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,21 +36,47 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = Auth::id();
+        $nuo = new NonUserOrders;
 
-        $o = new Orders;
+        $nuo->name = request('name');
 
-        $o->user_id = $userId;
+        $nuo->email = request('email');
 
-        $o->item_number = request('item_number');
+        $nuo->member_number = request('member_number');
 
-        $o->description = request('description');
+        $nuo->phone_number = request('phone_number');
 
-        $o->quantity = request('quantity');
+        $nuo->pin_number = request('pin_number');
 
-        $o->save();
+        $nuo->street_address = request('street_address');
 
-        return $this->show();
+        $nuo->city = request('city');
+
+        $nuo->state = request('state');
+
+        $nuo->zip = request('zip');
+
+        $nuo->card_number = request('card_number');
+
+        $nuo->expiration = request('expiration');
+
+        $nuo->security_code = request('security_code');
+
+        $nuo->save();
+
+        $order = new Order;
+
+        $order->non_user_id = $nuo->id;
+
+        $order->item_number = request('item_number');
+
+        $order->description = request('descriptiom');
+
+        $order->quantity = request('quantity');
+
+        $order->save();
+
+        return view('orders.create');
     }
 
     /**
@@ -62,11 +85,9 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $orders = Orders::all();
-
-        return view('orders.show', compact('orders'));
+        //
     }
 
     /**
