@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use App\Groups;
+use App\Orders;
 use App\User;
 
 class OrdersController extends Controller
@@ -45,15 +46,17 @@ class OrdersController extends Controller
 
         $o->user_id = $userId;
 
+        $o->non_user_id = 0;
+
         $o->item_number = request('item_number');
 
-        $o->description = request('description');
+        $o->description = request('item_description');
 
         $o->quantity = request('quantity');
 
         $o->save();
 
-        return $this->show();
+        return view('orders.show');
     }
 
     /**

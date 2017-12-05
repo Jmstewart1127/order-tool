@@ -17,7 +17,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'member_number', 'phone_number',
         'pin_number', 'street_address', 'city', 'state', 'zip',
-        'card_number', 'expiration', 'security_code',
+        'card_number', 'expiration', 'security_code', 'is_admin'
     ];
 
     /**
@@ -28,4 +28,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function roles() 
+    {
+        return $this->belongsToMany(App\Role::class);
+    }
+
+    public function isAdmin() 
+    {
+        return $this->roles()->where('is_admin', 1)->first();
+    }
+
 }

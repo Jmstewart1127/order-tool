@@ -133,7 +133,7 @@
 							<label for="expiration" class="col-md-4 control-label">Expiration Date (optional)</label>
 
 							<div class="col-md-6">
-								<input id="expiration" type="expiration" class="form-control" name="expiration"> @if ($errors->has('expiration'))
+								<input id="expiration" type="expiration" class="form-control" name="expiration" value=""> @if ($errors->has('expiration'))
 								<span class="help-block">
 									<strong>{{ $errors->first('expiration') }}</strong>
 								</span>
@@ -145,7 +145,7 @@
 							<label for="security_code" class="col-md-4 control-label">3-digit Security Code (optional)</label>
 
 							<div class="col-md-6">
-								<input id="security_code" type="security_code" class="form-control" name="security_code" required> @if ($errors->has('security_code'))
+								<input id="security_code" type="security_code" class="form-control" name="security_code" > @if ($errors->has('security_code'))
 								<span class="help-block">
 									<strong>{{ $errors->first('security_code') }}</strong>
 								</span>

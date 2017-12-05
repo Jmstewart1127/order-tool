@@ -4,21 +4,25 @@
     <div class="container">
         <div class="col-sm-offset-2 col-sm-8">
             <div class="panel panel-default">
-                @if (count($business) > 0)
+                @if (count($orders) > 0)
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Employers
+                            Orders
                         </div>
 
                         <div class="panel-body">
                             <table class="table table-striped task-table">
                                 <thead>
-                                <th>Employer Name</th>
+                                    <th>Item Number</th>
+                                    <th>Description</th>
+                                    <th>Quantity</th>
                                 </thead>
                                 <tbody>
-                                @foreach ($business as $businesses)
+                                @foreach ($orders as $order)
                                     <tr>
-                                        <td class="table-text"><div><a class="button" href="{{ url('business/show/'.$businesses->id) }}">{{ $businesses->businessName }}</a></div></td>
+                                        <td class="table-text"><div>{{ $order->item_number }}</div></td>
+                                        <td class="table-text"><div>{{ $order->description }}</div></td>
+                                        <td class="table-text"><div>{{ $order->quantity }}</div></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -27,7 +31,7 @@
                     </div>
                 @endif
             </div>
-            <a href="/business/create">Add Employer</a>
+            <a href="/orders/create">Add Order</a>
         </div>
     </div>
 @endsection

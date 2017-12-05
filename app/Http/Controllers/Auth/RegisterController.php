@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Roles;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -62,21 +64,44 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'member_number' => $data['member_number'],
-            'phone_number' => $data['phone_number'],
-            'pin_number' => $data['pin_number'],
-            'street_address' => $data['street_address'],
-            'city' => $data['city'],
-            'state' => $data['state'],
-            'zip' => $data['zip'],
-            'card_number' => bcrypt($data['card_number']),
-            'expiration' => $data['expiration'],
-            'security_code' => $data['security_code']
-        ]);
+        $user = User::all();
+        if (count($user) == 0) {
+           return 
+           User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'member_number' => $data['member_number'],
+                'phone_number' => $data['phone_number'],
+                'pin_number' => $data['pin_number'],
+                'street_address' => $data['street_address'],
+                'city' => $data['city'],
+                'state' => $data['state'],
+                'zip' => $data['zip'],
+                'card_number' => bcrypt($data['card_number']),
+                'expiration' => $data['expiration'],
+                'security_code' => $data['security_code'],
+                'is_admin' => true
+            ]);
+        } else {
+                   return User::create([
+                        'name' => $data['name'],
+                        'email' => $data['email'],
+                        'password' => bcrypt($data['password']),
+                        'member_number' => $data['member_number'],
+                        'phone_number' => $data['phone_number'],
+                        'pin_number' => $data['pin_number'],
+                        'street_address' => $data['street_address'],
+                        'city' => $data['city'],
+                        'state' => $data['state'],
+                        'zip' => $data['zip'],
+                        'card_number' => bcrypt($data['card_number']),
+                        'expiration' => $data['expiration'],
+                        'security_code' => $data['security_code'],
+                        'is_admin' => false
+                    ]);
+                }
+
     }
 }
   

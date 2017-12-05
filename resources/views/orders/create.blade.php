@@ -176,7 +176,7 @@
 							<label for="security_code" class="col-md-4 control-label">3-digit Security Code (optional)</label>
 
 							<div class="col-md-6">
-								<input id="security_code" type="security_code" class="form-control" name="security_code" required> @if ($errors->has('security_code'))
+								<input id="security_code" type="security_code" class="form-control" name="security_code"> @if ($errors->has('security_code'))
 								<span class="help-block">
 									<strong>{{ $errors->first('security_code') }}</strong>
 								</span>
@@ -195,12 +195,13 @@
                     </form>
 				@else
                 <form action="/orders/store" method="POST" class="form-horizontal">
+                {{ csrf_field() }} 
                     <!-- Item Number -->
                     <div class="form-group">
                         <label for="item_number" class="col-md-4 control-label">Item Number</label>
 
                         <div class="col-md-6">
-                            <input type="text" name="item_number" id="item-number" class="form-control">
+                            <input type="number" name="item_number" id="item-number" class="form-control">
                         </div>
                     </div>
 
@@ -218,7 +219,7 @@
                         <label for="quantity" class="col-md-4 control-label">Quantity</label>
 
                         <div class="col-md-6">
-                            <input type="text" name="quantity" id="quantity" class="form-control">
+                            <input type="number" name="quantity" id="quantity" class="form-control">
                         </div>
                     </div>
 
@@ -226,7 +227,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-md-6">
                             <button type="submit" class="btn btn-default">
-                                <i class="fa fa-btn fa-plus"></i>Add Employer
+                                <i class="fa fa-btn fa-plus"></i>Create Order
                             </button>
                         </div>
                     </div>

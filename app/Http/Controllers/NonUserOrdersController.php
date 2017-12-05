@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Orders;
 
 
-class NonUserOrders extends Controller
+class NonUserOrdersController extends Controller
 {
     /**
      * Display a listing of the resource.

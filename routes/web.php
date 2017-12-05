@@ -21,5 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('orders', 'OrdersController');
 
+Route::post('/orders/store', 'OrdersController@store');
+
 Route::resource('nonuserorders', 'NonUserOrdersController');
 
