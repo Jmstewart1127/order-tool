@@ -100,17 +100,45 @@ class OrdersController extends Controller
 
     public function showUserDetailsAndOrderForAdmin($id) 
     {
-        $userId = Auth::id();
+        $orders = DB::table('orders')->where('id', '=', $id)->get();
 
-        $admin = DB::table('users')->where('id', '=', $userId)->first();
+        $userId = DB::table('orders')->where('id', '=', $id)->value('user_id');
 
-        $user = DB::table('users')->where('id', '=', $id)->first();
+        $nonUserId = DB::table('orders')->where('id', '=', $id)->value('non_user_id');
 
-        $orders = DB::table('orders')->where('user_id', '=', $id)->get();
+        $user = DB::table('users')->where('id', '=', $userId)->first();
 
-        if ($admin->is_admin) {
-            return view('users.showuserdetails') 
-            ->with('user', $user)
+        $nonUserOrders = DB::table('non_user_orders')->where('id', '=', $nonUserId)->first();
+
+        $userOrders = DB::table('orders')->where('user_id', '=', $userId)->get();
+
+        if (Auth::user()->is_admin)
+        {
+            if ($nonUserId) 
+            {
+                return view('users.shownonuserdetails') 
+                ->with('nonUserOrders', $nonUserOrders)
+                ->with('orders', $orders);
+            } 
+            else 
+            {
+                return view('users.showuserdetails') 
+                ->with('users', $user)
+                ->with('userOrders', $userOrders);
+            }
+        }
+    }
+
+    public function adminShowNonUserDetails($id) 
+    {
+        $nonUserOrders = DB::table('non_user_orders')->where('id', '=', $id)->get();
+
+        $orders = DB::table('orders')->where('non_user_id', '=', $id)->get();
+
+        if (Auth::user()->is_admin) 
+        {
+            return view('users.showuserdetails')
+            ->with('non_user_orders', $nonUserOrders)
             ->with('orders', $orders);
         }
     }

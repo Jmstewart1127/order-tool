@@ -24,9 +24,9 @@ class CreateNonUserOrders extends Migration
             $table->string('city');
             $table->string('state');
             $table->integer('zip');
-            $table->string('card_number');
-            $table->integer('expiration');
-            $table->integer('security_code');
+            $table->string('card_number')->nullable();
+            $table->integer('expiration')->nullable();
+            $table->integer('security_code')->nullable();
             $table->timestamps();
         });
     }

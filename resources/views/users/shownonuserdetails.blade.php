@@ -4,7 +4,7 @@
     <div class="container">
         <div class="col-sm-offset-2 col-sm-8">
             <div class="panel panel-default">
-                @if (count($userOrders) > 0)
+                @if (count($nonUserOrders) > 0)
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Orders
@@ -12,20 +12,11 @@
 
                         <div class="panel-body">
 
-                        <!-- Item Description -->
-                        <div class="form-group">
-                            <label for="item_description" class="col-md-4 control-label">Description</label>
-
-                            <div class="col-md-6">
-                                <p>{{ $users->name }}</p>
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 							<label for="name" class="col-md-4 control-label">Name</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->name }}</p>
+                                <p>{{ $nonUserOrders->name }}</p>
 							</div>
 						</div>
 
@@ -33,7 +24,7 @@
 							<label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->email }}</p>
+                                <p>{{ $nonUserOrders->email }}</p>
 							</div>
 						</div>
 
@@ -41,7 +32,7 @@
 							<label for="member_number" class="col-md-4 control-label">Member Number</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->member_number }}</p>
+                                <p>{{ $nonUserOrders->member_number }}</p>
 							</div>
 						</div>
 
@@ -49,7 +40,7 @@
 							<label for="phone_number" class="col-md-4 control-label">Phone Number</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->phone_number }}</p>
+                                <p>{{ $nonUserOrders->phone_number }}</p>
 							</div>
 						</div>
 
@@ -57,7 +48,7 @@
 							<label for="pin_numnber" class="col-md-4 control-label">Member PIN</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->pin_number }}</p>
+                                <p>{{ $nonUserOrders->pin_number }}</p>
 							</div>
 						</div>
 
@@ -65,7 +56,7 @@
 							<label for="street_address" class="col-md-4 control-label">Street Address</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->street_address }}</p>
+                                <p>{{ $nonUserOrders->street_address }}</p>
 							</div>
 						</div>
 
@@ -73,7 +64,7 @@
 							<label for="city" class="col-md-4 control-label">City</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->city }}</p>
+                                <p>{{ $nonUserOrders->city }}</p>
 							</div>
 						</div>
 
@@ -81,7 +72,7 @@
 							<label for="state" class="col-md-4 control-label">State</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->state }}</p>
+                                <p>{{ $nonUserOrders->state }}</p>
 							</div>
 						</div>
 
@@ -89,7 +80,7 @@
 							<label for="zip" class="col-md-4 control-label">ZIP Code</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->zip }}</p>
+                                <p>{{ $nonUserOrders->zip }}</p>
 							</div>
 						</div>
 
@@ -97,7 +88,7 @@
 							<label for="card_number" class="col-md-4 control-label">Card Number (optional)</label>
 
 							<div class="col-md-6">
-                                <p>{{ decrypt($users->card_number) }}</p>
+                                <p>{{ $nonUserOrders->card_number }}</p>
 							</div>
 						</div>
 
@@ -105,7 +96,7 @@
 							<label for="expiration" class="col-md-4 control-label">Expiration Date (optional)</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->expiration }}</p>
+                                <p>{{ $nonUserOrders->expiration }}</p>
 							</div>
 						</div>
 
@@ -113,7 +104,7 @@
 							<label for="security_code" class="col-md-4 control-label">3-digit Security Code (optional)</label>
 
 							<div class="col-md-6">
-                                <p>{{ $users->security_code }}</p>
+                                <p>{{ $nonUserOrders->security_code }}</p>
 							</div>
 						</div>
                             <table class="table table-striped task-table">
@@ -124,7 +115,7 @@
                                     <th>Mark Complete</th>
                                 </thead>
                                 <tbody>
-                                @foreach ($userOrders as $order)
+                                @foreach ($orders as $order)
                                     <tr>
                                         <td class="table-text"><div>{{ $order->item_number }}</div></td>
                                         <td class="table-text"><div>{{ $order->description }}</div></td>
