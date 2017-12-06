@@ -31,5 +31,7 @@ Route::get('/admin/orders/show/{id}', 'OrdersController@ShowUserDetailsAndOrderF
 
 Route::post('orders/complete/{id}', 'OrdersController@complete');
 
+Route::post('nonuserorders/store', 'NonUserOrdersController@store');
+
 Route::resource('nonuserorders', 'NonUserOrdersController');
 

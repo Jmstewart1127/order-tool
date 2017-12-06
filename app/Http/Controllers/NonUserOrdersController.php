@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Orders;
+use App\NonUserOrders;
 
 
 class NonUserOrdersController extends Controller
@@ -64,13 +65,13 @@ class NonUserOrdersController extends Controller
 
         $nuo->save();
 
-        $order = new Order;
+        $order = new Orders;
 
         $order->non_user_id = $nuo->id;
 
         $order->item_number = request('item_number');
 
-        $order->description = request('descriptiom');
+        $order->description = request('item_description');
 
         $order->quantity = request('quantity');
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-use App\Groups;
+use App\NonUserOrders;
 use App\Orders;
 use App\User;
 
@@ -89,8 +89,12 @@ class OrdersController extends Controller
     
         $orders = Orders::all();
 
+        $nonUserOrders = NonUserOrders::all();
+
         if ($admin->is_admin) {
-            return view('orders.adminshow', compact('orders', $orders));
+            return view('orders.adminshow')
+            ->with('orders', $orders)
+            ->with('nonUserOrders', $nonUserOrders);
         }
     }
 

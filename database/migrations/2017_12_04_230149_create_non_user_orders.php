@@ -27,6 +27,7 @@ class CreateNonUserOrders extends Migration
             $table->string('card_number');
             $table->integer('expiration');
             $table->integer('security_code');
+            $table->timestamps();
         });
     }
 
