@@ -95,7 +95,7 @@ class RegisterController extends Controller
                         'city' => $data['city'],
                         'state' => $data['state'],
                         'zip' => $data['zip'],
-                        'card_number' => bcrypt($data['card_number']),
+                        'card_number' => encrypt($data['card_number']),
                         'expiration' => $data['expiration'],
                         'security_code' => $data['security_code'],
                         'is_admin' => false

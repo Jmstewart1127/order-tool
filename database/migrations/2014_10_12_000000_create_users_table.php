@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('state');
             $table->integer('zip');
             $table->string('card_number');
-            $table->integer('expiration')->nullable();
+            $table->string('expiration')->nullable();
             $table->integer('security_code')->nullable();
             $table->boolean('is_admin');
         });

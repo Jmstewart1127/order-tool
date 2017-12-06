@@ -56,7 +56,7 @@ class OrdersController extends Controller
 
         $o->save();
 
-        return view('orders.show');
+        return $this->showByUserId($userId);
     }
 
     /**
@@ -69,7 +69,53 @@ class OrdersController extends Controller
     {
         $orders = Orders::all();
 
-        return view('orders.show', compact('orders'));
+        return view('orders.show', compact('orders', $orders));
+    }
+    
+    public function showByUserId() 
+    {
+        $userId = Auth::id();
+
+        $orders = DB::table('orders')->where('user_id', '=', $userId)->get();
+        
+        return view('orders.showordersbyuser', compact('orders', $orders));
+    }
+
+    public function adminShow() 
+    {
+        $userId = Auth::id();
+        
+        $admin = DB::table('users')->where('id', '=', $userId)->first();
+    
+        $orders = Orders::all();
+
+        if ($admin->is_admin) {
+            return view('orders.adminshow', compact('orders', $orders));
+        }
+    }
+
+    public function showUserDetailsAndOrderForAdmin($id) 
+    {
+        $userId = Auth::id();
+
+        $admin = DB::table('users')->where('id', '=', $userId)->first();
+
+        $user = DB::table('users')->where('id', '=', $id)->first();
+
+        $orders = DB::table('orders')->where('user_id', '=', $id)->get();
+
+        if ($admin->is_admin) {
+            return view('users.showuserdetails') 
+            ->with('user', $user)
+            ->with('orders', $orders);
+        }
+    }
+
+    public function complete($id) 
+    {
+        $order = DB::table('orders')->where('id', '=', $id)->delete();
+
+        return $this->show();
     }
 
     /**

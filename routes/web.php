@@ -11,17 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+Route::get('/', 'OrdersController@create');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('orders', 'OrdersController');
 
+Route::get('/orders/show', 'OrdersController@show');
+
+Route::get('/my/orders/show', 'OrdersController@showByUserId');
+
 Route::post('/orders/store', 'OrdersController@store');
+
+Route::get('/admin/orders/show', 'OrdersController@adminShow');
+
+Route::get('/admin/orders/show/{id}', 'OrdersController@ShowUserDetailsAndOrderForAdmin');
+
+Route::post('orders/complete/{id}', 'OrdersController@complete');
 
 Route::resource('nonuserorders', 'NonUserOrdersController');
 

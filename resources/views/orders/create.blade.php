@@ -11,6 +11,7 @@
 
                 @if (Auth::guest())
 				<!-- New Task Form -->
+				<h3 style="text-align: center">Create an <a href="/register">account</a> and never fill out this form again!</h3><hr>
 				<form action="/nonuserorders/store" method="POST" class="form-horizontal">
 					{{ csrf_field() }} 
                         <!-- Item Number -->
