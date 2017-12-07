@@ -31,7 +31,7 @@
                     </div>
                 @endif
             </div>
-            <a href="/orders/create">Add Order</a>
+            <a href="/orders/create">Add Item</a>
         </div>
     </div>
 @endsection
